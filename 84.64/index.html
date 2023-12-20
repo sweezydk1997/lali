@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Desplegable</title>
+  <style>
+    *{padding: 0;margin: 0;}
+    select {
+      width: 200px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    body{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    #videoContainer {
+      background-color: rgb(0, 0, 0);
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 70vh;
+    }
+
+    iframe {
+      
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+     
+
+    #tituloEpisodio {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    #descripcionEpisodio {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    #infoEpisodio {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .bottom-bar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      background-color: #333;
+      position: fixed;
+      bottom: 0;
+    }
+    .form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .bottom-bar a {
+      text-decoration: none;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-bar i {
+      margin-bottom: 5px;
+    }
+    .descripcion{
+      background-color: aquamarine;
+      width: 100%;
+    }
+    .ne{
+      position: absolute;
+      background-color: rgb(239, 157, 64);
+      width: 60px;
+      height: 60px;
+      
+      right: 0;
+      top: 0;
+    }
+    @media screen and (max-width: 1300px) {
+      .from{
+        width: 100%;
+        height: 50px;
+      }
+      iframe {
+      
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: 100%;
+    }
+    #videoContainer{
+      
+      height: 60vh;
+    }
+      
+}
+  </style>
+</head>
+
+<body>
+  <form class="form">
+    <div id="videoContainer"></div>
+    <div class="ne"></div>
+    <div class="descripcion">
+      
+      <h1 id="tituloEpisodio"></h1>
+      <p id="descripcionEpisodio"></p>
+      <p id="infoEpisodio"></p>
+      <select id="episodios" onchange="redirigirVideo()">
+        <option disabled selected>Seleccione un episodio</option>
+        <option value="?video=pa"> Buscando las semillas</option>
+        <option value="?video=pe"> Invasión canina</option>
+        <option value="?video=pi"> Invasión canina</option>
+        <option value="?video=po"> Invasión canina</option>
+        <option value="?video=tu-marido-capitulo-1">Parque Anatómico</option>
+        <option value="?video=tu-marido-chipi-1">tu-marido-chipi-1</option>
+      </select>
+    </div>
+
+    
+  </form>
+
+  <div class="bottom-bar">
+    <a href="/">
+      <i class="fa fa-home"></i>
+      Inicio
+    </a>
+    <a href="#">
+      <i class="fa fa-user"></i>
+      Perfil
+    </a>
+  </div>
+
+  <script>
+    function redirigirVideo() {
+      var select = document.getElementById("episodios");
+      var selectedValue = select.value;
+
+      // Redirige a la URL con el parámetro seleccionado
+      if (selectedValue !== "") {
+        window.location.href = "" + selectedValue;
+      }
+    }
+
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+   
+    var capitulos = [
+      { pa: "https://drive.google.com/file/d/1WHDLkJahKI2N_kiOfc4zcC5t7-P3x2Lg/preview", cap: '1', tit: "donde estas", desc: "Descripción del Capítulo 1", fecha: "02/01/2023", calificacion: "4.2" },
+      { pe: "https://drive.google.com/file/d/1dFagYRX2655OKARHQFOBwGC9aGvvOfne/preview", cap: '2', tit: "Invasión canina", desc: "Descripción del Capítulo 2", fecha: "02/01/2023", calificacion: "4.2" },
+      { pi: "https://drive.google.com/file/d/1V5ieY09eTwgM57zbxOPNbWPVJUg5xKcB/preview", cap: '3', tit: "Parque Anatómico", desc: "Descripción del Capítulo 3", fecha: "03/01/2023", calificacion: "4.8" },
+      { po: "https://drive.google.com/file/d/1SNMrOrQxzpcwSBasGXj9ahSs76JCpH7u/preview", cap: '4', tit: "La simulación alienígena", desc: "Descripción del Capítulo 4", fecha: "04/01/2023", calificacion: "4.1" },
+      { 'tu-marido-capitulo-1': "https://drive.google.com/file/d/1rUwfZu_ma2xA2eBW0uOl7bHUeNPkbmBF/preview", cap: 5, tit: "Aventura submarina", desc: "Descripción del Capítulo 5", fecha: "05/01/2023", calificacion: "4.7" },
+      { 'tu-marido-chipi-1': "https://drive.google.com/file/d/1WHDLkJahKI2N_kiOfc4zcC5t7-P3x2Lg/preview", cap: 9, tit: "Aventura chipi", desc: "Descripción del Capítulo 9", fecha: "05/01/2023", calificacion: "4.7" }
+    ];
+
+    var capituloSeleccionado = getParameterByName("video");
+    if (capituloSeleccionado) {
+      var capituloActual = capitulos.find(cap => cap[capituloSeleccionado] !== undefined || Object.keys(cap)[0] === capituloSeleccionado);
+      if (capituloActual) {
+        document.getElementById("tituloEpisodio").innerText = "Episodio " + capituloActual.cap + " - " + capituloActual.tit;
+        document.getElementById("descripcionEpisodio").innerText = capituloActual.desc;
+        document.getElementById("infoEpisodio").innerText = "Fecha: " + capituloActual.fecha + " | Calificación: " + capituloActual.calificacion;
+        var videoContainer = document.getElementById("videoContainer");
+        videoContainer.innerHTML = '<iframe src="' + capituloActual[Object.keys(capituloActual)[0]] + '" allowfullscreen></iframe>';
+      }
+    }
+
+// Mapeo de clases a URLs
+  </script>
+<style>
+ .he{display: none;}
+</style>
+
+
+<h1 class="h1">UNO</h1>
+<h1 class="h2">DOS</h1>
+<h1 class="h3">TRES</h1>
+
+<br>
+<select class="bts" id="videoSelector" onchange="redireccionar(this.value)">
+  <option value="" disabled selected>UWU</option>
+  <option value="?video=pa">uno</option>
+  <option value="?video=pe">dos</option>
+  <option value="?video=pi">tres</option>
+</select>
+
+<script>
+  function redireccionar(url) {
+    if (url) {
+      window.location.href = url;
+    }
+  }
+
+
+
+</script>
+
+
+<script>
+
+
+
+
+</script>
+<script>
+if (window.location.pathname === '/') {
+}
+
+var sexo = new URLSearchParams(window.location.search).get('video');
+if (sexo === 'pa' || sexo === 'pe' || sexo === 'pi') {
+    document.querySelector('.bts').style.display = 'none';
+
+}
+
+
+
+  
+  </script>
+</body>
+
+</html>
