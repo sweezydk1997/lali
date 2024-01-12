@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+  <div id="aRzklaXf">Loading the player...</div>
+
+  <div class="container mt-4">
+    <button class="btn btn-primary" onclick="changeVideo('uno')">Ver Video Uno</button>
+    <button class="btn btn-primary" onclick="changeVideo('dos')">Ver Video Dos</button>
+    <button class="btn btn-primary" onclick="changeVideo('tres')">Ver Video tres</button>
+    <!-- Agrega más botones según sea necesario -->
+  </div>
+
+<h1>hola mundo</h1>
+  <script src="https://jwpsrv.com/library/FfMxTl3oEeSEiiIACxmInQ.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    var playerInstance = jwplayer("aRzklaXf");
+
+    function changeVideo(videoParam) {
+      var videoParams = {
+        "uno": "https://t5xxz1pl5b95.enaak-cdn.com/hls2/01/01070/ot3htnhl16qi_o/index-v1-a1.m3u8?t=UubIVTP1z0NvPlmk9C1sI0AaAZ-UKGyffrmQ7OjG_I8&s=1704414676&e=129600&f=5353955&srv=q7pxof2i5UI7&i=0.4&sp=1500&p1=q7pxof2i5UI7&p2=q7pxof2i5UI7&asn=267749",
+        "dos": "https://epg.provider.plex.tv/library/parts/608049aefa2b8ae93c2c3df3-6018913fa15130002b284197/variant.m3u8?url=1ae0cc28a31da1641eab9a5b9ff6e6f3-3ef663abf99eb3eeca0c142018b695084f44db663819e3dff90f80799e4e5a1c895c06b8515e44be25c37f5e85bd4e8510d63f6576cba944a6544c9d6d292f34ac575ecb609a275a588ccecfc9c5c41a853640c791d3aa8b6c907858e36ec5f60a43a70ff79d2288285bd13ba3e273f3&x-plex-token=MPAM7H29sp7KuP_Nz8a_&x-plex-advertising-identifier=&x-plex-advertising-donottrack=0&x-plex-provider-streaming-start=1704340340",
+        "dos": "https://epg.provider.plex.tv/library/parts/608049aefa2b8ae93c2c3df3-6018913fa15130002b284197/variant.m3u8?url=1ae0cc28a31da1641eab9a5b9ff6e6f3-3ef663abf99eb3eeca0c142018b695084f44db663819e3dff90f80799e4e5a1c895c06b8515e44be25c37f5e85bd4e8510d63f6576cba944a6544c9d6d292f34ac575ecb609a275a588ccecfc9c5c41a853640c791d3aa8b6c907858e36ec5f60a43a70ff79d2288285bd13ba3e273f3&x-plex-token=MPAM7H29sp7KuP_Nz8a_&x-plex-advertising-identifier=&x-plex-advertising-donottrack=0&x-plex-provider-streaming-start=1704340340", // Reemplaza con la URL correcta
+        "tres": "https://live-evg4.tv360.bitel.com.pe/bitel/americatv/chunks.m3u8?manifestfilter=video_bitrate:1-4194304&uid=7527", 
+        // Añade más aquí según sea necesario
+      };
+
+      if (videoParams.hasOwnProperty(videoParam)) {
+        playerInstance.setup({
+          "file": videoParams[videoParam],
+          "height": "560",
+          "width": "100%",
+          "stretching": "bestfit",
+          "image": "#",
+          "mediaid": "player",
+          "mute": false,
+          "autostart": false,
+          "cast": {
+            "appid": "player",
+            "logo": "https://i.ibb.co/Tgk2YrC/Logo.png",
+          },
+        });
+      } else {
+        console.error("Parámetro de video no válido.");
+      }
+    }
+  </script>
+</body>
+</html>
